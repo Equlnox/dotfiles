@@ -2,8 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/equinox/.oh-my-zsh
-
+export ZSH=/home/equinox/.oh-my-zsh
+export GOPATH=$HOME/go
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -102,4 +102,6 @@ source $ZSH/oh-my-zsh.sh
 #  exec startx
 #fi
 export EDITOR=nvim
+alias config='/usr/bin/git --git-dir=/home/equinox/.cfg/ --work-tree=/home/equinox'
+export PATH="$PATH:/home/equinox/.gem/ruby/2.5.0/bin"
 alias config='/usr/bin/git --git-dir=/home/equinox/.cfg/ --work-tree=/home/equinox'

@@ -13,7 +13,7 @@ set list
 nnoremap ; :
 nnoremap <C-L> :let @/=""<CR>
 nnoremap <C-C> "+y
-nnoremap <C-V> "+P
+"nnoremap <C-V> "+P
 "nnoremap gy gt
 "nnoremap gt gT
 " Alternatively use
@@ -31,6 +31,8 @@ nnoremap <M-7> 7gt
 nnoremap <M-8> 8gt
 nnoremap <M-9> 9gt
 nnoremap <M-0> 10gt
+
+"let g:livepreview_previewer = 'zathura'
 
 call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Valloric/YouCompleteMe', {'dir': '~/.local/share/nvim/plugged/YouCompleteMe/', 'do': './install.py --clang-completer'}
@@ -83,6 +85,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 
     "Plugin for snippets
     Plug 'SirVer/ultisnips'
+
+    "Plugin for live latex preview
+    Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
+    "Plugin for javascript syntax highlighting
+    Plug 'pangloss/vim-javascript'
+
 call plug#end()
 syntax on 
 "if (empty($TMUX))
@@ -141,3 +150,5 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:vimtex_compiler_progname = "nvr"
+let g:livepreview_engine = "pdflatex -shell-escape -interaction=nonstopmode" . ""
