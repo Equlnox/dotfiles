@@ -1,0 +1,64 @@
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+
+  padding:
+    x: 0 #25
+    y: 0 #25
+
+  dynamic_padding: true
+  decorations: None
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  size: 12
+#  normal:
+#    family: Source Code Pro
+#    style: Regular
+#  bold:
+#    family: Source Code Pro
+#    style: Bold
+#  italic:
+#    family: Source Code Pro
+#    style: Italic
+#  bold_italic:
+#    family: Source Code Pro
+#    style: Bold Italic
+
+draw_bold_text_with_bright_colors: true
+
+
+mouse_bindings:
+    - { mouse: Middle, action: PasteSelection }
+
+colors:
+  # Default colors
+  primary:
+    background: '#282a36'
+    foreground: '#f8f8f2'
+
+  # Normal colors
+  normal:
+    black: '#000000'
+    red: '#ff5555'
+    green: '#50fa7b'
+    yellow: '#f1fa8c'
+    blue: '#caa9fa'
+    magenta: '#ff79c6'
+    cyan: '#8be9fd'
+    white: '#bfbfbf'
+
+  # Bright colors
+  bright:
+    black: '#575b70'
+    red: '#ff6e67'
+    green: '#5af78e'
+    yellow: '#f4f99d'
+    blue: '#caa9fa'
+    magenta: '#ff92d0'
+    cyan: '#9aedfe'
+    white: '#e6e6e6'
