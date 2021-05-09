@@ -1,0 +1,9 @@
+[user]
+	name = Prateek Karnal
+	email = karnalprateek@gmail.com
+[pull]
+	ff = only
+[push]
+	default = current
+[core]
+	excludesfile = /home/equinox/.gitignore_global

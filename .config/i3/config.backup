@@ -31,7 +31,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -94,16 +94,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 #defining the workspaces
-set $w1 workspace 1
-set $w2 workspace 2
-set $w3 workspace 3
-set $w4 workspace 4
-set $w5 workspace 5
-set $w6 workspace 6
-set $w7 workspace 7
-set $w8 workspace 8
-set $w9 workspace 9 
-set $w10 workspace 10 
+set $w1 workspace 1: Web Browser 
+set $w2 workspace 2: Terminal 
+set $w3 workspace 3: Terminal 
+set $w4 workspace 4: Books 
+set $w5 workspace 5: Books 
+set $w6 workspace 6: Misc 
+set $w7 workspace 7: Misc 
+set $w8 workspace 8: Chatting 
+set $w9 workspace 9: Movies  
+set $w10 workspace 10: Music 
 
 
 # switch to workspace
@@ -131,6 +131,8 @@ bindsym $mod+Shift+9 move container to $w9
 bindsym $mod+Shift+0 move container to $w10
 bindsym $mod+Shift+Tab workspace prev 
 bindsym $mod+Tab workspace next
+
+assign [class="qtwebflix"] $w9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -162,32 +164,56 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+#bookercodes colorscheme
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
 
-bindsym $mod+r mode "resize"
+#bindsym $mod+r mode "resize"
+bindsym $mod+r exec termite -e ranger
 
-bindsym $mod+o gaps inner current plus 5
-bindsym $mod+i gaps inner current minus 5
-bindsym $mod+u gaps inner current set 0
-bindsym $mod+bracketright gaps outer current plus 5
-bindsym $mod+bracketleft gaps outer current minus 5
-bindsym $mod+p gaps outer current set 0
+bindsym $mod+bracketleft gaps inner current plus 5
+bindsym $mod+bracketright gaps inner current minus 5
+bindsym $mod+y resize shrink width 10 px or 10 ppt
+bindsym $mod+u resize grow height 10 px or 10 ppt
+bindsym $mod+i resize shrink height 10 px or 10 ppt
+bindsym $mod+o resize grow width 10 px or 10 ppt
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-#  position top
-	font pango:System San Francisco Display 10
-	status_command i3status
-}
+#bar {
+	#font pango:bitstream vera sans mono:bold: 11
+	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	##status_command i3status
+	#position bottom
 
+	##separator_symbol "::"
 
+	##strip_workspace_numbers no
+
+	#colors {
+		#background #344b67
+		#statusline #ffffff
+		#separator #ffffff
+    ##<colorclass>      <border> <background>   <text>
+    #focused_workspace  #4c7899    #cf4340      #000000 
+    #active_workspace   #333333    #5f676a      #ffffff
+    #inactive_workspace #333333    #444444      #888888
+    #urgent_workspace   #2f343a    #900000      #ffffff
+    #binding_mode       #2f343a    #900000      #ffffff
+  #}
+#}
+exec /home/equinox/.config/polybar/launch.sh
 exec xmodmap ~/.Xmodmap
 exec_always compton -bf
-bindsym $mod+d exec rofi -show run -theme DarkBlue.rasi
-bindsym $mod + x exec i3lock -c d34836
-#for_window [class="^.*"] border pixel 0
-default_border pixel 0
+#bindsym $mod+d exec rofi -show run -theme onedark.rasi
+bindsym $mod+d exec rofi -show run 
+bindsym $mod + x exec lock.sh -c d34836
+for_window [class="^.*"] border pixel 0
+#default_border pixel 5
 #smart_gaps on
-#gaps inner 5
+gaps inner 10
 #gaps outer 2
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -202,7 +228,7 @@ bindsym XF86MonBrightnessDown exec light -U 3 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec ~/.config/toggletouchpad.sh # toggle touchpad
-
+bindsym $mod + c exec artha 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
@@ -213,14 +239,25 @@ bindsym XF86AudioPrev exec playerctl previous
 #exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 #Cutom Screenshot command. Puts the file in screenshot folder while copying it to the clipboard
 bindsym --release Print exec deepin-screenshot -s "/home/equinox/Data/Pics/Screenshots/$(date +%F_%H_%M_%S).png" && xclip -selection clipboard -t image/png -i "`ls -dt /home/equinox/Data/Pics/Screenshots/* | head -n1 `" 
+#Default thing copied
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #ffffff
+
+#Modified
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #7986cb   #ef5350
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.unfocused        #333333 #222222 #888888 #292d2e   #ffffff
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
-exec --no-startup-id xautolock -time 15 -locker 'i3lock -d -c d34836'
+
+exec --no-startup-id xautolock -time 15 -locker 'lock.sh -d -c d34836'
 exec --no-startup-id xautolock -time 30 -locker 'systemctl hibernate'
 #exec i3lock
 #bindsym $mod+m bar mode toggle

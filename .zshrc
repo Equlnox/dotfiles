@@ -101,7 +101,22 @@ source $ZSH/oh-my-zsh.sh
 #if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #  exec startx
 #fi
-export EDITOR=nvim
+export EDITOR=vim
 alias config='/usr/bin/git --git-dir=/home/equinox/.cfg/ --work-tree=/home/equinox'
 export PATH="$PATH:/home/equinox/.gem/ruby/2.5.0/bin"
-alias config='/usr/bin/git --git-dir=/home/equinox/.cfg/ --work-tree=/home/equinox'
+export PATH="$PATH:/home/equinox/.local/bin"
+export PATH="$PATH:/home/equinox/bin"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export DJANGO_SETTINGS_MODULE="rippling.settings.dev"
+export RIPPLING_BACKEND="$HOME/rippling/rippling-main"
+export LD_LIBRARY_PATH="$RIPPLING_BACKEND/lightsail-cffi/lib:$RIPPLING_BACKEND/symmetry-cffi/lib/current/ste-shared-libraries"
+eval "$(direnv hook zsh)"
+
+# fzf config
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+# aws-mfa
+export MFA_DEVICE=arn:aws:iam::408750594584:mfa/prateek
+export MFA_STS_DURATION=18000

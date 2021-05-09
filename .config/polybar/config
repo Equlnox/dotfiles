@@ -9,10 +9,11 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/top]
+[bar/bottom]
 ;monitor = ${env:MONITOR:HDMI-1}
 ;width = 1870
 height = 22
+bottom = true
 ;offset-x = 25
 ;offset-y = 3
 radius = 0
@@ -50,13 +51,14 @@ tray-padding =
 ;tray-transparent = true
 tray-background = #395668
 
-[bar/bottom]
+[bar/top]
+monitor = ${env:MONITOR:}
 ;monitor = ${env:MONITOR:HDMI-1}
 ;width = 1870
 height = 22
 ;offset-x = 25
 ;offset-y = 3
-bottom = true
+#bottom = true
 radius = 0
 fixed-center = true
 
