@@ -119,4 +119,16 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 
 # aws-mfa
 export MFA_DEVICE=arn:aws:iam::408750594584:mfa/prateek
-export MFA_STS_DURATION=18000
+export MFA_STS_DURATION=36000
+export AWS_DEFAULT_REGION=us-west-2
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/equinox/google-cloud-sdk/path.zsh.inc' ]; then . '/home/equinox/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/equinox/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/equinox/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Edit line in vim with ctrl-w:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^w' edit-command-line

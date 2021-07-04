@@ -9,48 +9,6 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/bottom]
-;monitor = ${env:MONITOR:HDMI-1}
-;width = 1870
-height = 22
-bottom = true
-;offset-x = 25
-;offset-y = 3
-radius = 0
-fixed-center = true
-
-background = #98000000
-foreground = ${colors.foreground}
-
-line-size = 3
-line-color = #f00
-
-border-size = 3
-border-color = #98000000
-
-padding-left = 1
-padding-right = 1
-
-module-margin-left = 0
-module-margin-right = 1
-
-font-0 = inconsolata:size=12:style=Bold:antialias=true;2
-font-1 = Font Awesome 5 Brands:size=12;2
-font-2 = Font Awesome 5 Free:style=Regular:size=12;2
-font-3 = Font Awesome 5 Free:style=Solid:size=12;2
-font-4 = Font Awesome 5:size=12;2
-font-5 = unifont:size=12;2
-font-6 = siji:pixelsize=12;2
-
-modules-left = menu-apps xwindow
-modules-center = 
-modules-right = volume 
-
-tray-position = right
-tray-padding = 
-;tray-transparent = true
-tray-background = #395668
-
 [bar/top]
 monitor = ${env:MONITOR:}
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -60,6 +18,7 @@ height = 22
 ;offset-y = 3
 #bottom = true
 radius = 0
+tray-position = right
 fixed-center = true
 
 background = #98000000
@@ -86,7 +45,7 @@ font-6 = siji:pixelsize=12;2
 
 modules-left = workspaces 
 modules-center = 
-modules-right = volume wlan memory battery date
+modules-right = volume wlan wired-network memory cpu battery date
 
 [module/workspaces]
 type = internal/xworkspaces
@@ -191,7 +150,7 @@ interval = 2
 format-prefix = "  "
 format-prefix-foreground = #FFFFFF
 ;format-underline = #7FC4B0
-label ="%percentage%% "
+label ="%percentage:2%% "
 format-background = #527078
 
 [module/memory]
@@ -200,15 +159,13 @@ interval = 2
 format-prefix =  "  "
 format-prefix-foreground = #FFFFFF
 ;format-underline = #EE780B
-label ="%percentage_used%% "
+label ="%percentage_used:2%% "
 format-background = #E37C2F
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
-
-format-connected ="<label-connected> "
 ;format-connected-underline = #FFFFFF
 label-connected = "  %essid%"
 format-connected-background = #D3795E
@@ -216,7 +173,7 @@ format-connected-prefix =
 
 format-disconnected = <label-disconnected> 
 ;format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = 
+;label-disconnected = 
 label-disconnected-foreground = #FFFFFF
 
 ramp-signal-0 = 
@@ -225,6 +182,13 @@ ramp-signal-2 = :|
 ramp-signal-3 = :)
 ramp-signal-4 = :]
 ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/wired-network]
+type = internal/network
+interface = enp3s0u1u4
+label-connected ="  %linkspeed%"
+interval = 3.0
+format-connected-background = #D3795E
 
 [module/date]
 type = internal/date
@@ -256,6 +220,7 @@ format-volume-suffix-background = #F16941
 
 format-muted-prefix = 
 format-muted-foreground = #FFFFFF
+;label-muted = 🔇
 label-muted = 
 
 bar-volume-width = 10
@@ -286,23 +251,24 @@ bar-volume-underline = #116482
 ;type = internal/battery
 ;battery = BAT1
 ;adapter = ADP1
-;full-at = 98
-
+;full-at = 95
+;
 ;format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
-
+;
 ;format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
-
+;label-full =  %percentage%%
+;
 ;format-full-prefix = " "
 ;format-full-prefix-foreground = ${colors.foreground-alt}
 ;format-full-underline = ${self.format-charging-underline}
-
+;
 ;ramp-capacity-0 = 
 ;ramp-capacity-1 = 
 ;ramp-capacity-2 = 
 ;ramp-capacity-foreground = ${colors.foreground-alt}
-
+;
 ;animation-charging-0 = 
 ;animation-charging-1 = 
 ;animation-charging-2 = 
@@ -314,17 +280,20 @@ bar-volume-underline = #116482
 type = internal/battery
 battery = BAT1
 adapter = ADP1
-full-at = 100
+full-at = 95
 
 format-charging = " <animation-charging> <label-charging> "
 ;format-charging-underline = #F5D863
 format-charging-foreground = #FFFFFF
 format-charging-background = #F3AC3A
 
+format-full-background = #F3AC3A
+format-full = " <ramp-capacity> <label-full> " 
+
 format-charging-prefix = 
 format-discharging = " <ramp-capacity> <label-discharging> "
-format-discharging-underline = #FEA93E
-format-discharging-background = #FCB446
+;format-discharging-underline = #FEA93E
+format-discharging-background = #fc8c46
 format-discharging-prefix = 
 
 ramp-capacity-0 = " "
@@ -334,11 +303,11 @@ ramp-capacity-3 = " "
 ramp-capacity-4 = " "
 ramp-capacity-foreground = #FFFFFF
 
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
-animation-charging-3 = " "
-animation-charging-4 = " "
+;animation-charging-0 = " "
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
 animation-charging-foreground = #FFFFFF
 animation-charging-framerate = 750
 
@@ -365,45 +334,13 @@ ramp-3 = " "
 ramp-4 = " "
 ramp-foreground = #FFFFFF
 
-[module/menu-apps]
-type = custom/menu
-expand-right = true
-label-open = "  Applications "
-label-close = x
-label-separator = |
-;label-open-background = #5a000000
-label-open-background = #416170
-label-close-backround = #5a000000
-
-menu-0-0 = Internet
-menu-0-0-exec = menu-open-1
-menu-0-1 = Office
-menu-0-1-exec = menu-open-2
-menu-0-2 = Multimedia
-menu-0-2-exec = menu-open-3
-menu-0-3 = Update
-menu-0-3-exec = pamac-manager &
-
-menu-1-0 = Firefox
-menu-1-0-exec = firefox &
-menu-1-1 = Thunderbird
-menu-1-1-exec = thunderbird &
-menu-1-2 = Steam
-menu-1-2-exec = steam &
-
-menu-2-0 = TextMaker
-menu-2-0-exec = textmaker18 &
-menu-2-1 = Presentations
-menu-2-1-exec = presentations18
-menu-2-2 = PlanMaker
-menu-2-2-exec = planmaker18
-
-menu-3-0 = Spotify
-menu-3-0-exec = spotify &
-menu-3-1 = Vlc
-menu-3-1-exec = vlc &
-
-[settings]
+[module/player-mpris-simple]
+type = custom/script
+exec = .config/polybar-scripts/polybar-scripts/player-mpris-simple/player-mpris-simple.sh
+interval = 3
+click-left = playerctl previous &
+click-right = playerctl next &
+click-middle = playerctl play-pause &[settings]
 screenchange-reload = true
 ;compositing-background = xor
 compositing-background = screen

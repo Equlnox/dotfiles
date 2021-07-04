@@ -100,11 +100,11 @@ set $ws3 "3 "
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
+set $ws7 "7 "
 set $ws8 "8 "
 set $ws9 "9 "
-set $ws10 "10 "
-
+set $ws10 "10 "
+# 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -134,16 +134,21 @@ workspace $ws1 output DP-0.8
 workspace $ws2 output DP-0.8
 workspace $ws3 output DP-0.8
 workspace $ws4 output DP-0.8
+workspace $ws10 output DP-0.8
 
+workspace $ws7 output eDP-1-1
 workspace $ws8 output eDP-1-1
 workspace $ws9 output eDP-1-1
-workspace $ws10 output eDP-1-1
 
 # Bind applications to workspaces
-assign [class="google-chrome"] $ws1
+#assign [class="Google-chrome"] $ws4
+assign [class="jetbrains-pycharm-ce"] $ws3
+assign [class="tandem"] $ws7
+assign [class="YouTube Music"] $ws7
 assign [class="zoom"] $ws8
 assign [class="Slack"] $ws9
-assign [class="discord"] $ws10
+assign [class="discord"] $ws6
+assign [class="Notion"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,15 +196,16 @@ bindsym $mod+r mode "resize"
 ## Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 bindsym $mod+d exec rofi -disable-history -show  run -theme DarkBlue.rasi
 bindsym $mod+space exec rofi -show run -theme DarkBlue.rasi
 
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 3 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 3 # decrease screen brightness
-bindsym $mod+bracketright exec xbacklight -inc 10 # increase screen brightness
-bindsym $mod+bracketleft exec xbacklight -dec 10 # decrease screen brightness
+#bindsym $mod+bracketright exec xbacklight -inc 10 # increase screen brightness
+#bindsym $mod+bracketleft exec xbacklight -dec 10 # decrease screen brightness
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+ #increase sound volume
@@ -212,6 +218,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle # mute sound
 # printscreen to capture screenshot, save it in a temp file, and copy it to clipboard
 bindsym --release Print exec deepin-screenshot -s "/Data/Photos/Screenshots/latest.png" && xclip -selection clipboard -t image/png -i "`ls -dt /Data/Photos/Screenshots/* | head -n1 `"
 exec compton
+exec dunst
 
 ## For removing titlebar
 for_window [class="^.*"] border pixel 0
@@ -220,3 +227,6 @@ for_window [class="^.*"] border pixel 0
 ## Multiple monitor bindings
 # Moving workspaces between screens 
 bindsym $mod+p move workspace to output right
+
+exec dual_monitors_nvidia
+

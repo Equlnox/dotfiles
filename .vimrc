@@ -1,3 +1,4 @@
+let mapleader=" "
 set rnu
 set nu
 "nnoremap <esc> :noh<return><esc>

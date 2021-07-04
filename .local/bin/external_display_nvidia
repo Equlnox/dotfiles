@@ -1,0 +1,3 @@
+#!/bin/bash
+xrandr --output eDP-1-1 --off --output DP-0.8 --mode 1920x1200 
+$HOME/.fehbg

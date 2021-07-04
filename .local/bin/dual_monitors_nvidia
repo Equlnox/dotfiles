@@ -1,0 +1,5 @@
+#!/bin/bash
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+xrandr --output DP-0.8 --mode 1920x1200 --output eDP-1-1 --mode 1920x1080 --left-of DP-0.8
+$HOME/.config/polybar/launch.sh
+$HOME/.fehbg
